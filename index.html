@@ -1,0 +1,46 @@
+<html>
+<!-- <script type="text/javascript" src="underdash.js"></script> -->
+<script type="text/javascript" src="underscore.js"></script>
+<head>
+
+</head>
+<body>
+  <script>
+
+    var double = function(param){
+        return param *= 2;
+    };
+    var appendIsAwesome = function(param){
+      return param + " is awesome!";
+    }
+    var removeLastChar = function(param){
+      return param.substring(0, param.length-1);
+    }
+
+    function printLog(param){
+      console.log(param);
+    }
+
+    var arr = [1, "a", 3, 4];
+    _.each(arr, printLog);
+
+    arr = [];
+    arr[0] = [1];
+    arr[2] = [3];
+    _.each(arr, printLog);
+
+    var arrToDouble = [1,2,3,4];
+    var doubledArray = _.map(arrToDouble, double);
+    printLog(doubledArray);
+
+    printLog(_.map(["Steve", "Eric"], appendIsAwesome));
+    printLog(_.map(["thisx","shouldy","readq","normallyp"], removeLastChar));
+    printLog(_.map([1,2,3], double));
+    printLog(_.map({first: 1, second: 2, third: 3}, double));
+    printLog(_.map({first: 11, second: 22, third: 33}, function(v, k){
+      console.log(k, v);
+    }));
+  </script>
+</body>
+
+</html>
