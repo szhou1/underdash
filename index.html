@@ -1,71 +1,36 @@
+<!DOCTYPE html>
 <html>
-<script type="text/javascript" src="underdash.js"></script>
-<!-- <script type="text/javascript" src="underscore.js"></script> -->
-<head>
+  <head>
+    <title>Underdash Test Suite</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="lib/css/mocha.css" />
+    <script src="lib/chai.js"></script>
+    <script src="lib/mocha.js"></script>
+    <script src="lib/sinon.js"></script>
+    <script src="lib/sinon-chai.js"></script>
+    <script src="lib/cardboard.js"></script>
+    <script src="lib/testSupport.js"></script>
 
-</head>
-<body>
-  <script>
+    <!-- Source files -->
+    <script src="src/underdash.js"></script>
+    <!-- End source files -->
 
-    var double = function(param){
-        return param *= 2;
-    };
-    var appendIsAwesome = function(param){
-      return param + " is awesome!";
-    }
-    var removeLastChar = function(param){
-      return param.substring(0, param.length-1);
-    }
+    <!-- Test files -->
+    <script>
+          var clock;
 
-    function printLog(param){
-      console.log(param);
-    }
+          before(function() {
+            clock = sinon.useFakeTimers();
+          });
 
-    var arr = [1, "a", 3, 4];
-//    _.each(arr, printLog);
-
-    arr = [];
-    arr[0] = [1];
-    arr[2] = [3];
-//    _.each(arr, printLog);
-
-    var arrToDouble = [1,2,3,4];
-    var doubledArray = _.map(arrToDouble, double);
-//    printLog(doubledArray);
-
-//    printLog(_.map(["Steve", "Eric"], appendIsAwesome));
-//    printLog(_.map(["thisx","shouldy","readq","normallyp"], removeLastChar));
-//    printLog(_.map([1,2,3], double));
-//    printLog(_.map({first: 1, second: 2, third: 3}, double));
-    // printLog(_.map({first: 11, second: 22, third: 33}, function(v, k){
-    //   console.log(k, v);
-    // }));
-
-// **** Test filter
-    // var arr = [1,2,3,4];
-    // console.log(_.filter(arr, function(param){
-    //   return param % 2 === 0;
-    // }));
-    // console.log(_.filter(arr, function(param){
-    //   return param % 2 !== 0;
-    // }));
-    // console.log(_.filter({a : "1", b:"2", c:"3", d:"4"}, function(param){
-    //   return param % 2 === 0;
-    // }));
-    // arr = [[1, 2, 3, 4],[5, 6,7,8],[9, 10, 11, "12"],["13", 14, 15, "16"]];
-    // console.log(_.filter(arr, function(param){
-    //   if(typeof param[param.length-1] !== 'string'){
-    //     return param;
-    //   }
-    // }));
-
-// **** test Reduce
-    var arr = [1,2,3,4];
-    console.log(_.reduce(arr, function(memo, num){ return memo += num;}, 0));
-    console.log(_.reduce(arr, function(memo, num){ return memo -= num;}, 0));
-    console.log(_.reduce(arr, function(memo, num){ return memo *= num;}, 1));
-
-  </script>
-</body>
-
+          after(function() {
+            clock.restore();
+          });
+    </script>
+    <script src="test/test.js"></script>
+    <!-- End test files -->
+  </head>
+  <body>
+    <div id="mocha"></div>
+  </body>
 </html>
