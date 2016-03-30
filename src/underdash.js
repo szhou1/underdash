@@ -19,6 +19,20 @@
   //
   // this._ = _;
 
+  // first
+  // returns the first n elements of the array
+  _.first = function(array, index) {
+
+    if (index === undefined) {
+      return array[0];
+    } else if (array.length <= index) {
+      return array;
+    }
+
+    return array.slice(0, index);
+
+  };
+
   // each()
   // accepts a collection and a callback function, doesn't return anything,
   // loop though collection and sends the values of the collection to the callback function
@@ -39,44 +53,66 @@
 
   // map
   // creates a new array from sending collection to callback
-  // _.map = function(collection, callback) {
-  //   var array = [];
-  //   _.each(collection, function(param) {
-  //     array.push(callback(param));
-  //   });
-  //   return array;
-  // };
+  _.map = function(collection, callback) {
+    var array = [];
+    _.each(collection, function(param) {
+      array.push(callback(param));
+    });
+    return array;
+  };
   //
   // // reduce
   // // iterates through a collection and boils it down to a single value via callback function
-  // _.reduce = function(collection, callback, memo) {
-  //   _.each(collection, function(param) {
-  //     memo = callback(memo, param);
-  //   });
-  //   return memo;
-  // };
+  _.reduce = function(collection, callback, acc) {
+    _.each(collection, function(value) {
+      if (acc === undefined) {
+        acc = value;
+      } else {
+        acc = callback(acc, value);
+      }
+
+    });
+    return acc;
+  };
+
   //
   // // ReduceRight
   // // exactly the same as reduce but from starting from the end of the array
-  // _.reduceRight = function(collection, callback, memo) {
-  //   _.each(collection.reverse(), function(param) {
-  //     memo = callback(memo, param);
-  //   });
-  //   return memo;
-  // };
+  _.reduceRight = function(collection, callback, acc) {
+    _.each(collection.reverse(), function(value) {
+      if (acc === undefined) {
+        acc = value;
+      } else {
+        acc = callback(acc, param);
+      }
+    });
+    return acc;
+  };
   //
   // // filter
-  // // creates a new collection and populates it based on the filter criteria
-  // _.filter = function(collection, callback) {
-  //   var array = [];
-  //   _.each(collection, function(param) {
-  //     if (callback(param)) {
-  //       array.push(param);
-  //     }
-  //   });
-  //   return array;
-  // };
+  _.filter = function(collection, callback) {
+    // // creates a new collection and populates it based on the filter criteria
+    var array = [];
+    _.each(collection, function(param) {
+      if (callback(param)) {
+        array.push(param);
+      }
+    });
+    return array;
+  };
 
   var arr = [];
+
+  // bind
+  // returns a copy of the function being bound with the parameter object
+  // set as the 'this' for the function, with a given sequence of args proceeding
+
+  // call
+  // invokes the function with an 'this' as first parameter, n number of subsequent parameters
+
+  // apply
+  // invokes the function with 'this' as 1st parameter, then an array of subsequent parameters
+
+  //
 
 }());
